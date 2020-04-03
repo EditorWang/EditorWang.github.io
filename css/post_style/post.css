@@ -5,43 +5,20 @@
   border: 1px solid #ddd;
   box-shadow: 0 0 2px #ddd;
 }
-body{
-  position: absolute;
-  top: 0;
+.posts .post:first-child {
+  margin-top: 0;
 }
-.posts  {
-  .post:first-child {
-    margin-top: 0;
-  }
-
-  .post-title {
-    font-size: 1.5em;
-
-    .post-title-link {
-      color: #368CCB;
-      text-decoration: none;
-    }
-  }
-
-  .post-content {
-    a {
-      color: #368CCB;
-      text-decoration: none;
-    }
-  }
-
-  .post-meta {
-    color: #BABABA;
-  }
+.posts .post-title {
+  font-size: 1.5em;
 }
-._posts {
-	/*height: 100%;*/
-  /*width: 100% !important;*/
-  /*margin-bottom: 300px;*/
-	background: red;
+.posts .post-title .post-title-link {
+  color: #368ccb;
+  text-decoration: none;
 }
-/*
-
-  Todo:
-    文章卡的布局
-*/
+.posts .post-content a {
+  color: #368ccb;
+  text-decoration: none;
+}
+.posts .post-meta {
+  color: #bababa;
+}
