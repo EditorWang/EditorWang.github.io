@@ -91,7 +91,7 @@ a:hover {
 	justify-content: center;
 	align-items: center;
 	background: url("../img/j82zoq.jpg");
-	background-size: 200%;
+	background-size: cover;
 	object-fit: cover;
 	object-position: center;
 	background-attachment: fixed;
@@ -315,6 +315,7 @@ img {
 } 
 
 @media screen and (max-width:500px) {
+    
     .more:hover {
         color: #01AAED;
         transition: all 0.5s;
