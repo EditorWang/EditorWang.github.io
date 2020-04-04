@@ -2,6 +2,12 @@ html,body{
     width: 100%;
     height: 100%;
 }
+.Index_Link,.Fenlei_Link,.Api_Link,.About_Link,.Link_Link{
+  color: #333;
+}
+.Link_Link{
+  color: var(--blue);
+}
 .bg {
   width: 100%;
   height: 100%;
@@ -32,7 +38,7 @@ html,body{
 }
 .Link_{
   width:100%;
-  border-top: #e83e8c 15px solid;
+  border-top: var(--pink) 15px solid;
   margin-left: auto;
   margin-right: auto;
   box-shadow: .5em 0.5em 0.5em rgba(0,0,0,0.5);
@@ -81,7 +87,22 @@ html,body{
 .name,.Jianjie{
   margin-bottom: .5em;
 }
-
+.YaoQiu{
+  background: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  padding: 2em;
+  box-shadow: .5em 0.5em 0.5em rgba(0,0,0,0.5);
+  margin-top: 5em;
+	border-top: var(--pink) 15px solid;
+}
+.commits{
+  background: rgba(255, 255, 255, 0.8);
+  text-align: left;
+  padding: 2em;
+  box-shadow: .5em 0.5em 0.5em rgba(0,0,0,0.5);
+  margin-top: 5em;
+	border-top: var(--pink) 15px solid;
+}
 @media screen and (max-width:768px){
   .items {
     width: 100%;
@@ -107,13 +128,108 @@ html,body{
 
 @media screen and (min-width:1200px) {
 }
-/*
 
-.items {
-	width: 50%;
-	margin-top: 25px;
-	padding-left: 1em;
-	padding-right: 1em;
+.YaoQiu>h1,h2,h3,h4 {
+  color: #111111;
+  font-weight: 400;
+  margin-top: 1em;
+  /*font-family: Georgia, Palatino, serif;*/
+  margin-bottom: 16px;
+  padding: 0;
 }
 
-*/
+.YaoQiu>h1{
+  color: var(--blue);
+  margin-top: 0;
+}
+.YaoQiu>p{
+      line-height: 30px;
+}
+code, pre {
+  border-radius: 3px;
+  background-color:#f7f7f7;
+  color: inherit;
+}
+
+code {
+  /*font-family: Consolas, Monaco, Andale Mono, monospace;*/
+  margin: 0 2px;
+}
+
+pre {
+  line-height: 1.7em;
+  overflow: auto;
+  padding: 6px 10px;
+  border-left: 5px solid var(--primary);
+}
+
+pre > code {
+  border: 0;
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  font-size: .85em;
+  white-space: pre;
+  background: 0 0;
+
+}
+
+code {
+  color: #666555;
+}
+
+aside {
+  display: block;
+  float: right;
+  width: 390px;
+}
+blockquote {
+  border-left:.5em solid #eee;
+  padding: 0 0 0 2em;
+  margin-left:0;
+}
+blockquote  cite {
+  font-size:14px;
+  line-height:20px;
+  color:#bfbfbf;
+}
+blockquote cite:before {
+  content: '\2014 \00A0';
+}
+
+blockquote p {
+  color: #666;
+}
+hr {
+  text-align: left;
+  color: #999;
+  height: 2px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.YaoQiu>dl {
+  padding: 0;
+}
+
+.YaoQiu>dl dt {
+  padding: 10px 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.YaoQiu>dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.YaoQiu>dd {
+  margin-left: 0;
+}
