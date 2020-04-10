@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>高能の博客~</title>
+    <link rel="stylesheet" href="https://www.layuicdn.com/layui/css/layui.css">
+    <link href="https://cdn.bootcss.com/font-awesome/5.12.1/css/all.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/index.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/color.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+  <body>
+    
+<div class="top">
+    <div class="layui-container">
+        <nav>
+            <h1 class="top_title"><a href="/">高能的博客</a></h1>
+            <div class="left">
+                <li class="Index"><a href="/" class="Index_Link">首页</a></li>
+                <li class="Fenlei"><a href="/categories" class="Fenlei_Link">分类</a></li>
+                <li class="Link"><a href="/Link" class="Link_Link">友情链接</a></li>
+                <li class="About"><a href="/2020/01/30/hello/" class="About_Link">关于我</a></li>
+                <li class="more"><i class="fas fa-align-justify"></i></li>
+            </div>
+        </nav>
+    </div>
+</div>
+<style>
+</style>
+<div class="sidebar_main">
+    <div class="sidebar">
+        <div class="off">
+            <i class="fas fa-plus" style="rotate: 45deg;font-size: 36px;"></i>
+        </div>
+        <div class="items">
+            <li class="Index_side">
+                <i class="fa fa-list"></i>
+                <a href="/" class="index">首页</a>
+            </li>
+            <li class="Fenlei_side">
+                <i class="fa fa-box"></i>
+                <a href="/categories" class="fl">分类</a>
+            </li>
+            <li class="Link_side">
+                <i class="fa fa-link"></i>
+                <a href="/Link" class="link">友情链接</a></li>
+            <li class="About_side">
+                <i class="fa fa-id-card"></i>
+                <a href="/2020/01/30/hello/" class="aboutme">关于我</a>
+            </li>
+        </div>
+    </div>
+</div>
+
+    <div class="zz"></div>
+<div class="top_"><h1 class="title">爬取贴吧踩到的一些坑</h1></div>
+<div class="main"></div>
+<div class="layui-container cards">
+    <div class="layui-row">
+        <div id="post_card" class="left-card layui-col-md9 editormd-onlyread">
+            <h1 id="爬虫贴吧踩到的一些坑"><a href="#爬虫贴吧踩到的一些坑" class="headerlink" title="爬虫贴吧踩到的一些坑"></a>爬虫贴吧踩到的一些坑</h1><ol start="0">
+<li><a href="#JianJie">思路设想</a></li>
+<li><a href="#Data">数据处理篇</a></li>
+<li><a href="#SQL">数据存放篇</a></li>
+<li><a href="#Time">time模块</a></li>
+</ol>
+<p><span id="JianJie"></span></p>
+<h3 id="思路设想"><a href="#思路设想" class="headerlink" title="思路设想"></a>思路设想</h3><hr />
+
+<blockquote>
+<p>  Get_list.py—–获取指定贴吧里所有帖子链接，返回一个list<br /><br>    Spider.py——-负责获取list里的元素，发起请求，返回HTML解析，然后储存到MySql</p>
+</blockquote>
+<p><span id="Data"></span></p>
+<h3 id="数据处理篇"><a href="#数据处理篇" class="headerlink" title="数据处理篇"></a>数据处理篇</h3><hr />
+&nbsp;&nbsp;&nbsp;&nbsp;Get_list.py解析返回的html的时候，返回空列表。写入一个test.html的时候发现被注释掉了。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;于是在代码中加入<br />
+
+<pre><code>replace(r&apos;&lt;!--&apos;,&apos;&quot;&apos;).replace(r&apos;--&gt;&apos;,&apos;&quot;&apos;)</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;最后成功返回数据（爽到~）</p>
+<p><span id="SQL"></span></p>
+<hr />
+
+<h3 id="数据存放篇"><a href="#数据存放篇" class="headerlink" title="数据存放篇"></a>数据存放篇</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;获取PostId，存放进mysql的时候发现，不管怎么存放都是2147483647(Int_Max值)<br /><br>&nbsp;&nbsp;&nbsp;&nbsp;大概是下麦呢这个场景<br /><br><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://i.loli.net/2020/04/09/hgQXHfyPAwdOkaE.png" alt="LER__5S_8YOPDYE_5A_1_4A.png"><br /><br>&nbsp;&nbsp;&nbsp;&nbsp;然后我发现，Post_Id的字段类型是Int，Post_Id可能超出了Int最大数值，于是改成varchar就可以了。(如果还有什么更好的解决方案可以在评论区评论一下，阿里嘎多)<br><br /></p>
+<hr id="Time"/>
+
+<h3 id="time模块"><a href="#time模块" class="headerlink" title="time模块"></a>time模块</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;写程序有一个习惯，就是在进行IO操作的时候会计时写入一个log里(我不知道这是不是个好习惯。)<br><br /><br>&nbsp;&nbsp;&nbsp;&nbsp;使用time模块里clock()对象的时候，抛出Warning<br><br /></p>
+<pre><code>time.clock has been deprecated in Python 3.3 and will be 
+removed from Python 3.8: use time.perf_counter or time.
+process_time instead</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;大意就是，这玩意在3.8就要被扔了赶紧用perf_counter()或者process_time()这俩吧<br /><br>&nbsp;&nbsp;&nbsp;&nbsp;但是我就很好奇，这两个对象有什么不同么。于是打开了python的官方手册。大意如下<br /></p>
+<ul>
+<li><h2 id="二者的不同"><a href="#二者的不同" class="headerlink" title="二者的不同"></a>二者的不同</h2><ol>
+<li>perf_counter包括睡眠时间</li>
+<li>process_time是进程时间不包括睡眠时间</li>
+</ol>
+</li>
+<li><h2 id="二者相同之处"><a href="#二者相同之处" class="headerlink" title="二者相同之处"></a>二者相同之处</h2><ol>
+<li>都能返回时间</li>
+<li>都有毫秒返回对象</li>
+</ol>
+</li>
+<li><h2 id="perf-counter优势"><a href="#perf-counter优势" class="headerlink" title="perf_counter优势"></a>perf_counter优势</h2><ul>
+<li>perf_counter或许更加准确，因为包含了Sleep时间</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <div class="right-card layui-col-md3">
+            <div class="Left_Top">
+                <div class="img"></div>
+                <h3 class="Authors"><a href ='/'>高能</a></h3>
+                <h5 class="Jianjie">不要被自己所束缚</h3>
+            </div>
+        </div>
+    </div> 
+    <script src='https://unpkg.com/valine/dist/Valine.min.js'></script>
+<style>
+</style>
+<div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'AtqlqVzfRkyMHAuApkDSI4PU-gzGzoHsz',
+            appKey: 'XkCJLequPVpjBIYkPBLyouA3'
+        })
+  </script>
+
+</div>
+<style>
+    .top_{
+        background-image:url(../../../../img/g8dw9d.png);
+	    object-fit: cover;
+	    object-position: center;
+	    background-attachment: fixed;
+        background-size: cover;
+        background-position-y: ;
+        background-position-x: 50%;
+    }
+    
+</style>
+
+<link rel="stylesheet" href="/css/posts.css">
+
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="https://www.layuicdn.com/layui/layui.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    
+<script src="/js/index.js"></script>
+
+    
+<script src="/js/ready.js"></script>
+
+    
+<script src="/js/header.js"></script>
+
+  <script>!function(e){var c=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function i(){for(var r=0;r<c.length;r++)t=c[r],0<=(n=t.getBoundingClientRect()).bottom&&0<=n.left&&n.top<=(e.innerHeight||document.documentElement.clientHeight)&&function(){var t,n,e,i,o=c[r];t=o,n=function(){c=c.filter(function(t){return o!==t})},e=new Image,i=t.getAttribute("data-original"),e.onload=function(){t.src=i,n&&n()},e.src=i}();var t,n}i(),e.addEventListener("scroll",function(){var t,n;t=i,n=e,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(n)},500)})}(this);</script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script></body>
+</html>

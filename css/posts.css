@@ -68,10 +68,10 @@ body{
 }
 
 .left-card{
-    padding-top: 2.5em;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-bottom: 2em;
+    padding-top: 2em;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+    padding-bottom: 2.5em;
     max-width: 66%;
     background: white;
     border-radius: 5px;
@@ -293,6 +293,31 @@ body{
 #post_card>p{
         line-height: 30px;
 }
+/*
+#post_card>li{
+    list-style: disc;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+    padding-bottom: 1.5em;
+}
+*/
+/*
+    ul
+    li
+*/
+#post_card>ul{
+    list-style: circle !important;
+}
+#post_card>ol>li{
+    list-style: decimal;
+    margin-left: 2.5em;
+}
+#post_card>ul>li>ol>li,#post_card>ul>li>ul>li{
+    list-style: circle !important;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
 code, pre {
     border-radius: 3px;
     background-color:#f7f7f7;
